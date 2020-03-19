@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik } from "formik";
 
-const Search = ({ handleSearch = searchTerm => console.log(searchTerm) }) => {
+const Search = ({ updateEvents, initialTerm }) => {
+  useEffect(() => {
+    updateEvents(initialTerm);
+  }, []);
+
   return (
     <div>
-      <Formik initialValues={{ searchTerm: "" }}>
+      <Formik initialValues={{ searchTerm: initialTerm }}>
         {({ values, handleChange, handleBlur, handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <input
@@ -12,7 +16,7 @@ const Search = ({ handleSearch = searchTerm => console.log(searchTerm) }) => {
               name="searchTerm"
               onChange={e => {
                 handleChange(e);
-                handleSearch(e.target.value);
+                updateEvents(e.target.value);
               }}
               value={values.searchTerm}
               onBlur={handleBlur}
