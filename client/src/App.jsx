@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
 import EventList from "./components/EventList";
+import Search from "./components/Search";
 
 const App = () => {
   const [eventList, setEventList] = useState([
@@ -187,6 +188,7 @@ const App = () => {
   return (
     <div>
       Hello World
+      <Search />
       <EventList eventList={eventList} />
     </div>
   );
